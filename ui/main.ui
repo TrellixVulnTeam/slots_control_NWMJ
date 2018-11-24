@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>管理</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Password"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>运管</string>
+    </property>
+    <addaction name="actionQuery"/>
+    <addaction name="actionEdit"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>舱控</string>
+    </property>
+    <addaction name="actionInput_Slot_Allocation"/>
+    <addaction name="actionInput_Booking"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionChange_Password">
+   <property name="text">
+    <string>Change Password</string>
+   </property>
+  </action>
+  <action name="actionQuery">
+   <property name="text">
+    <string>Query</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionInput_Slot_Allocation">
+   <property name="text">
+    <string>Input Slot Allocation</string>
+   </property>
+  </action>
+  <action name="actionInput_Booking">
+   <property name="text">
+    <string>Input Booking</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>fmLogon</class>
+ <widget class="QWidget" name="fmLogon">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>Microsoft YaHei UI</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>true</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::TabFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>登录</string>
+  </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhHiddenText|Qt::ImhSensitiveData</set>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>80</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="toolTipDuration">
+    <number>-1</number>
+   </property>
+   <property name="text">
+    <string>用户名：</string>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>140</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft YaHei UI</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="toolTipDuration">
+    <number>-1</number>
+   </property>
+   <property name="text">
+    <string>密码：</string>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>189</y>
+     <width>301</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="btnYes">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>确认</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnChangePassword">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>10</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>更改密码</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLineEdit" name="tbUser">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>80</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="tbPassword">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>140</y>
+     <width>181</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="inputMask">
+    <string>*</string>
+   </property>
+  </widget>
+  <zorder>groupBox</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>tbUser</zorder>
+  <zorder>tbPassword</zorder>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnYes</sender>
+   <signal>clicked()</signal>
+   <receiver>fmLogon</receiver>
+   <slot>Log_confirm()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>128</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>128</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>Log_confirm()</slot>
+ </slots>
+</ui>

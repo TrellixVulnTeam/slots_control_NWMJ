@@ -1,0 +1,1 @@
+This is only a prectise. Might workable but not universal one

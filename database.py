@@ -66,7 +66,7 @@ class Ver(Base):
     published=Column('published',Time)
     creator=Column('creator',String(10))
 
-engine = create_engine('postgresql://postgres:postgres@localhost:5432/workflow'
+engine = create_engine('postgresql://postgres:*********@localhost:5432/workflow'
                        ,echo=False)
 DBsession = sessionmaker(bind=engine)
 session = DBsession()

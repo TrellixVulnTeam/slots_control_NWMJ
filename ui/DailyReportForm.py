@@ -27,7 +27,7 @@ class DailyReport( wx.Frame ):
                  pos=wx.DefaultPosition,
                  style=wx.DEFAULT_FRAME_STYLE)
         self.SetSize( (800, 600) )
-        self.list_svcs = wx.ListBox( self, wx.ID_ANY, choices=[""] )
+        self.list_svcs = wx.myList( self, wx.ID_ANY, choices=[""] )
         self.cb_svvd = wx.ComboBox( self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN )
         self.cb_last_loading_port = wx.ComboBox( self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN )
         self.dp_closing_date = wx.adv.DatePickerCtrl( self, wx.ID_ANY )
@@ -48,13 +48,13 @@ class DailyReport( wx.Frame ):
         self.grd_spaces.CreateGrid( 10, 5 )
         self.grd_spaces.SetSelectionMode( wx.grid.Grid.SelectRows )
         self.grd_spaces.SetColLabelValue( 0, "Region" )
-        self.grd_spaces.SetColSize( 0, 100 )
+        self.grd_spaces.SetColSize( 0, 110 )
         self.grd_spaces.SetColLabelValue( 1, "Local" )
         self.grd_spaces.SetColSize( 1, 110 )
         self.grd_spaces.SetColLabelValue( 2, "Local Alloc" )
         self.grd_spaces.SetColSize( 2, 110 )
         self.grd_spaces.SetColLabelValue( 3, "Trans" )
-        self.grd_spaces.SetColSize( 3, 11  0 )
+        self.grd_spaces.SetColSize( 3, 110   )
         self.grd_spaces.SetColLabelValue( 4, "Trans Alloc" )
         self.grd_spaces.SetColSize( 4, 110 )
 
@@ -97,11 +97,13 @@ class DailyReport( wx.Frame ):
         # end wxGlade
 
 
-# end of class MyFrame
+
+
+    # end of class MyFrame
 
 class SpaceReport( wx.App ):
     def OnInit(self):
-        self.frame = MyFrame( None, wx.ID_ANY, "" )
+        self.frame = DailyReport( None, wx.ID_ANY, "" )
         self.SetTopWindow( self.frame )
         self.frame.Show()
         return True

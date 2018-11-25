@@ -84,7 +84,11 @@ class Ui_fmLogon(object):
         self.tbPassword.setInputMask(_translate("fmLogon", "*"))
 
     def Log_confirm(self):
-        QtWidgets.QMessageBox.information(QtWidgets,"标题","这是第一个PyQt5 GUI程序")
+        reply = QtWidgets.QMessageBox.information(self,'提示','这是一个消息提示对话框!', QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Close, QtWidgets.QMessageBox.Close)
+        if reply == QtWidgets.QMessageBox.Ok:
+            self.la.setText('你选择了Ok！')
+        else:
+            self.la.setText('你选择了Close！')
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)

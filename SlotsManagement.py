@@ -10,6 +10,7 @@ class SpaceManagement(wx.App):
         return True
 def main():
     app=SpaceManagement()
+
     app.MainLoop()
 
 if __name__=='__main__':

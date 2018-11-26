@@ -1,1 +1,0 @@
-select * from information_schema.columns where table_schema='smartsys' and table_name like 'obj_%' order by table_name, column_name;

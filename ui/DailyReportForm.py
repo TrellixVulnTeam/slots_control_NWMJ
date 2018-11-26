@@ -7,6 +7,11 @@
 import wx
 import wx.adv
 import wx.grid
+import psycopg2
+import arrow
+from  db_operation import *
+
+
 
 
 # begin wxGlade: dependencies
@@ -15,19 +20,27 @@ import wx.grid
 # begin wxGlade: extracode
 # end wxGlade
 
+class TreeListForSVCs( wx.TreeCtrl ):
+    def __init__(self, parent, ID):
+        wx.TreeCtrl.__init__( self, parent, ID )
+
+    def update_list(self, list_svc): pass
+    #    self.AppendItems( list_svc )
+
 
 class DailyReport( wx.Frame ):
+
     def __init__(self,
                  parent=None,
                  id=wx.ID_ANY,
                  pos=wx.DefaultPosition,
                  style=wx.DEFAULT_FRAME_STYLE):
-        wx.Frame.__init__(self, parent=None,
-                 id=wx.ID_ANY,
-                 pos=wx.DefaultPosition,
-                 style=wx.DEFAULT_FRAME_STYLE)
+        wx.Frame.__init__( self, parent=None,
+                           id=wx.ID_ANY,
+                           pos=wx.DefaultPosition,
+                           style=wx.DEFAULT_FRAME_STYLE )
         self.SetSize( (800, 600) )
-        self.list_svcs = wx.myList( self, wx.ID_ANY, choices=[""] )
+        self.tl_svc = TreeListForSVCs( self, -1 )
         self.cb_svvd = wx.ComboBox( self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN )
         self.cb_last_loading_port = wx.ComboBox( self, wx.ID_ANY, choices=[], style=wx.CB_DROPDOWN )
         self.dp_closing_date = wx.adv.DatePickerCtrl( self, wx.ID_ANY )
@@ -36,8 +49,14 @@ class DailyReport( wx.Frame ):
         self.btn_Quit = wx.Button( self, wx.ID_ANY, "Quit" )
         self.btn_Reload = wx.Button( self, wx.ID_ANY, "Reload" )
 
+        self.today = arrow.now().format( 'YYYY-MM-DD' )
+        self.db = slots_db( database='postgres',
+                       usr='****',
+                       pwd='****' )
         self.__set_properties()
         self.__do_layout()
+        self.__load_data()
+
         # end wxGlade
 
     def __set_properties(self):
@@ -54,11 +73,15 @@ class DailyReport( wx.Frame ):
         self.grd_spaces.SetColLabelValue( 2, "Local Alloc" )
         self.grd_spaces.SetColSize( 2, 110 )
         self.grd_spaces.SetColLabelValue( 3, "Trans" )
-        self.grd_spaces.SetColSize( 3, 110   )
+        self.grd_spaces.SetColSize( 3, 110 )
         self.grd_spaces.SetColLabelValue( 4, "Trans Alloc" )
         self.grd_spaces.SetColSize( 4, 110 )
 
         # end wxGlade
+
+    def __load_data(self):
+
+        self.tl_svc.update_list( self.db.get_svcs_list( self.today ))
 
     def __do_layout(self):
         # begin wxGlade: MyFrame.__do_layout
@@ -71,7 +94,7 @@ class DailyReport( wx.Frame ):
         sizer_8 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, "Last Loading Port" ), wx.HORIZONTAL )
         sizer_7 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, "SVVD" ), wx.HORIZONTAL )
         sizer_5 = wx.StaticBoxSizer( wx.StaticBox( self, wx.ID_ANY, "List of Services" ), wx.HORIZONTAL )
-        sizer_5.Add( self.list_svcs, 2, wx.ALL | wx.EXPAND, 0 )
+        sizer_5.Add( self.tl_svc, 2, wx.ALL | wx.EXPAND, 0 )
         sizer_1.Add( sizer_5, 1, wx.EXPAND, 0 )
         sizer_7.Add( self.cb_svvd, 1, wx.ALL | wx.EXPAND, 0 )
         sizer_6.Add( sizer_7, 1, wx.EXPAND, 0 )
@@ -89,17 +112,15 @@ class DailyReport( wx.Frame ):
         sizer_3.Add( (150, 10), 0, 0, 0 )
         sizer_2.Add( sizer_3, 1, wx.EXPAND, 0 )
         sizer_1.Add( sizer_2, 8, wx.ALL | wx.EXPAND, 0 )
-        #grid_col_width = sizer_4.GetSize()[1] / 5
+        # grid_col_width = sizer_4.GetSize()[1] / 5
 
         self.SetSizer( sizer_1 )
         self.Layout()
         self.Centre()
         # end wxGlade
 
-
-
-
     # end of class MyFrame
+
 
 class SpaceReport( wx.App ):
     def OnInit(self):
